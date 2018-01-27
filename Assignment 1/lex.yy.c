@@ -1788,9 +1788,9 @@ void yyfree (void * ptr )
 
 main()
 {
-yyout=fopen("intermediate.c","w+");
+yyout=fopen("output.c","w+");
 yylex();
 fclose(yyout);
-sys=system("indent -kr intermediate.c -o output.c");
+sys=system("indent -kr output.c");
 }
 
