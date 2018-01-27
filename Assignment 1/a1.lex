@@ -1,6 +1,6 @@
 %{
 #include <stdio.h>
-int i;
+int sys;
 %}
 
 %%
@@ -12,9 +12,9 @@ int i;
 
 main(int argc,char *argv[])
 {
-argv[2] = "inter.c";
-yyout=fopen(argv[2],"w+");
+argv[0] = "intermediate.c";
+yyout=fopen(argv[0],"w+");
 yylex();
 fclose(yyout);
-i=system("indent -kr inter.c -o output.c");
+sys=system("indent -kr intermediate.c -o output.c");
 }

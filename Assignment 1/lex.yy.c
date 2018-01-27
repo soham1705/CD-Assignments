@@ -485,7 +485,7 @@ char *yytext;
 #line 1 "a1.lex"
 #line 2 "a1.lex"
 #include <stdio.h>
-int i;
+int sys;
 #line 490 "lex.yy.c"
 
 #define INITIAL 0
@@ -1788,10 +1788,10 @@ void yyfree (void * ptr )
 
 main(int argc,char *argv[])
 {
-argv[2] = "inter.c";
-yyout=fopen(argv[2],"w+");
+argv[0] = "intermediate.c";
+yyout=fopen(argv[0],"w+");
 yylex();
 fclose(yyout);
-i=system("indent -kr inter.c -o output.c");
+sys=system("indent -kr intermediate.c -o output.c");
 }
 
