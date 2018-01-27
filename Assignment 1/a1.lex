@@ -10,10 +10,9 @@ int sys;
 ("printf(".*((\/)(\*)).*((\*)(\/))) {ECHO;}
 %%
 
-main(int argc,char *argv[])
+main()
 {
-argv[0] = "intermediate.c";
-yyout=fopen(argv[0],"w+");
+yyout=fopen("intermediate.c","w+");
 yylex();
 fclose(yyout);
 sys=system("indent -kr intermediate.c -o output.c");
