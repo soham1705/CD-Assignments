@@ -46,7 +46,7 @@ op   : '?' str      {int size=strlen($2);$<intval>$=size;printf("%d\n",$$);}
      | str '@' str  {char* s=is_suffix($1,$3);$$=s;printf("%s\n",$$);}
      | str '#' str  {char* s=is_substring($1,$3);$$=s;printf("%s\n",$$);}
      | str '=' str  {char* s=is_equal($1,$3);$$=s;printf("%s\n",$$);}
-     | str '<>' str  {char* s=is_not_equal($1,$3);$$=s;printf("%s\n",$$);}
+     | str '<' '>' str  {char* s=is_not_equal($1,$4);$$=s;printf("%s\n",$$);}
      ;
 
 
