@@ -5,6 +5,7 @@ char *repeated_concat(char* a,int n);
 char *prefix_of_length(char* a,int n);
 char *suffix_of_length(char* a,int n);
 char *is_prefix(char *a,char *b);
+char *is_suffix(char *a,char *b);
 #include <stdio.h>
 #include <string.h>
 %}
@@ -14,11 +15,13 @@ char *is_prefix(char *a,char *b);
 %type <intval> num
 %type <strval> str
 %type <strval> op
-%left '?'
+
 %left '*'
 %left '%'
 %left '&'
 %left '~'
+%left '@'
+%right '?'
 %right '^'
 %start S
 
@@ -34,6 +37,7 @@ op   : '?' str      {int size=strlen($2);$<intval>$=size;printf("%d\n",$$);}
      | str '%' num  {char* s=prefix_of_length($1,$3);$$=s;printf("%s\n",$$);}
      | str '&' num  {char* s=suffix_of_length($1,$3);$$=s;printf("%s\n",$$);}
      | str '~' str  {char* s=is_prefix($1,$3);$$=s;printf("%s\n",$$);}
+     | str '@' str  {char* s=is_suffix($1,$3);$$=s;printf("%s\n",$$);}
      ;
 
 
@@ -97,8 +101,21 @@ char *is_prefix(char *a,char *b)
     return "True";
 }
 
+char *is_suffix(char *a,char *b)
+{
+    int i;
+    for(int i=strlen(a);i>=0;i--)
+    {
+        if(a[i]!=b[i+strlen(b)-strlen(a)])
+        {
+            return "False";
+        }
+    }
+    return "True";
+}
+
 int main(){
- yyparse();
+  yyparse();
 }
 
 void yyerror (char *s) {fprintf(stderr, "%s\n",s );}

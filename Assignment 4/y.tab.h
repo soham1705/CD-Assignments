@@ -54,7 +54,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 12 ".\\stringops.y"
+#line 13 ".\\stringops.y"
 int intval;char* strval;
 
 
