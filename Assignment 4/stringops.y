@@ -4,10 +4,8 @@ char *concatenate(char* a,char* b);
 #include <stdio.h>
 #include <string.h>
 %}
-%union {
-int intval;
-char* strval;
-}
+
+%union {int intval;char* strval;}
 %token STR NR
 %type <intval>NR
 %type <strval>STR
@@ -15,7 +13,9 @@ char* strval;
 %left '*' '-'
 %right '='
 %start S
+
 %%
+
 S   : S operatie        {}
     | operatie          {printf("%s\n",$<strval>$);}
     ;
