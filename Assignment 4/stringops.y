@@ -6,6 +6,7 @@ char *prefix_of_length(char* a,int n);
 char *suffix_of_length(char* a,int n);
 char *is_prefix(char *a,char *b);
 char *is_suffix(char *a,char *b);
+char *is_substring(char *a,char *b);
 #include <stdio.h>
 #include <string.h>
 %}
@@ -21,6 +22,7 @@ char *is_suffix(char *a,char *b);
 %left '&'
 %left '~'
 %left '@'
+%left '#'
 %right '?'
 %right '^'
 %start S
@@ -38,6 +40,7 @@ op   : '?' str      {int size=strlen($2);$<intval>$=size;printf("%d\n",$$);}
      | str '&' num  {char* s=suffix_of_length($1,$3);$$=s;printf("%s\n",$$);}
      | str '~' str  {char* s=is_prefix($1,$3);$$=s;printf("%s\n",$$);}
      | str '@' str  {char* s=is_suffix($1,$3);$$=s;printf("%s\n",$$);}
+     | str '#' str  {char* s=is_substring($1,$3);$$=s;printf("%s\n",$$);}
      ;
 
 
@@ -112,6 +115,13 @@ char *is_suffix(char *a,char *b)
         }
     }
     return "True";
+}
+
+char *is_substring(char *a,char *b)
+{
+    if(strstr(b,a))
+      return "True";
+    return "False";
 }
 
 int main(){
