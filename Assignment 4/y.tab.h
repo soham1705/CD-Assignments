@@ -54,15 +54,12 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 7 ".\\stringops.y"
-
-int intval;
-char* strval;
-
+#line 9 ".\\stringops.y"
+int intval;char* strval;
 
 
 /* Line 1685 of yacc.c  */
-#line 66 "y.tab.h"
+#line 63 "y.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
