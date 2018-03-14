@@ -13,20 +13,24 @@ char *suffix_of_length(char* a,int n);
 %type <intval> num
 %type <strval> str
 %type <strval> op
-%left '*' '%' '&'
+%left '?'
+%left '*'
+%left '%'
+%left '&'
 %right '^'
 %start S
 
 %%
 
-S   : S op        {}
-    | op          {printf("%s\n",$<strval>$);}
+S   : S op      {}
+    | op        {}
     ;
 
-op   : str '*' str {char* s=concatenate($1,$3);$$=s;}
-     | str '^' num  {char* s=repeated_concat($1,$3);$$=s;}
-     | str '%' num  {char* s=prefix_of_length($1,$3);$$=s;}
-     | str '&' num  {char* s=suffix_of_length($1,$3);$$=s;}
+op   : '?' str      {int size=strlen($2);$<intval>$=size;printf("%d\n",$$);}
+     | str '^' num  {char* s=repeated_concat($1,$3);$$=s;printf("%s\n",$$);}
+     | str '*' str {char* s=concatenate($1,$3);$$=s;printf("%s\n",$$);}
+     | str '%' num  {char* s=prefix_of_length($1,$3);$$=s;printf("%s\n",$$);}
+     | str '&' num  {char* s=suffix_of_length($1,$3);$$=s;printf("%s\n",$$);}
      ;
 
 
