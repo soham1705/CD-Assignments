@@ -4,6 +4,7 @@ char *concatenate(char* a,char* b);
 char *repeated_concat(char* a,int n);
 char *prefix_of_length(char* a,int n);
 char *suffix_of_length(char* a,int n);
+char *is_prefix(char *a,char *b);
 #include <stdio.h>
 #include <string.h>
 %}
@@ -17,6 +18,7 @@ char *suffix_of_length(char* a,int n);
 %left '*'
 %left '%'
 %left '&'
+%left '~'
 %right '^'
 %start S
 
@@ -31,6 +33,7 @@ op   : '?' str      {int size=strlen($2);$<intval>$=size;printf("%d\n",$$);}
      | str '*' str {char* s=concatenate($1,$3);$$=s;printf("%s\n",$$);}
      | str '%' num  {char* s=prefix_of_length($1,$3);$$=s;printf("%s\n",$$);}
      | str '&' num  {char* s=suffix_of_length($1,$3);$$=s;printf("%s\n",$$);}
+     | str '~' str  {char* s=is_prefix($1,$3);$$=s;printf("%s\n",$$);}
      ;
 
 
@@ -79,6 +82,19 @@ char *suffix_of_length(char* a,int n)
     }
     result[ct]='\0';
     return result;
+}
+
+char *is_prefix(char *a,char *b)
+{
+    int i;
+    for(int i=0;a[i]!='\0';i++)
+    {
+        if(a[i]!=b[i])
+        {
+            return "False";
+        }
+    }
+    return "True";
 }
 
 int main(){
