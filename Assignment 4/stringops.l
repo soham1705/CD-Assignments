@@ -1,14 +1,15 @@
 %{
 #include <stdio.h>
+#include <stdlib.h>
 #include "y.tab.h"
 %}
 
 %%
 
+"exit"          {exit(EXIT_SUCCESS);}
 [0-9]+          {yylval.intval=atoi(yytext); return NR;}
 [a-zA-Z]+       {yylval.strval=strdup(yytext); return STR;}
-[ \t]           ;
-\n              {return 0;}
+[ \t\n]         ;
 .               {return yytext[0];}
 
 %%

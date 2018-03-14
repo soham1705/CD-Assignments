@@ -10,22 +10,20 @@ char *repeated_concat(char* a,int n);
 %token STR NR
 %type <intval>NR
 %type <strval>STR
-%type <strval>operatie
-%left '*' '-'
-%right '='
+%type <strval>op
+%left '*'
+%right '^'
 %start S
 
 %%
 
-S   : S operatie        {}
-    | operatie          {printf("%s\n",$<strval>$);}
+S   : S op        {}
+    | op          {printf("%s\n",$<strval>$);}
     ;
 
-operatie    :   STR '*' STR {   char* s=concatenate($1,$3);
-                                $$=s;}
-            |   STR '^' NR  {   char* s=repeated_concat($1,$3);
-                                $$=s;}
-            ;
+op   : STR '*' STR {char* s=concatenate($1,$3);$$=s;}
+     | STR '^' NR  {char* s=repeated_concat($1,$3);$$=s;}
+     ;
 
 
 %%
