@@ -746,12 +746,12 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 10 ".\\stringops.l"
-{yylval.intval=atoi(yytext); return NR;}
+{yylval.intval=atoi(yytext); return num;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 11 ".\\stringops.l"
-{yylval.strval=strdup(yytext); return STR;}
+{yylval.strval=strdup(yytext); return str;}
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */

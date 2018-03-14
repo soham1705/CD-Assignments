@@ -2,16 +2,17 @@
 void yyerror(char *s);
 char *concatenate(char* a,char* b);
 char *repeated_concat(char* a,int n);
+char *prefix_of_length(char* a,int n);
 #include <stdio.h>
 #include <string.h>
 %}
 
 %union {int intval;char* strval;}
-%token STR NR
-%type <intval>NR
-%type <strval>STR
-%type <strval>op
-%left '*'
+%token str num
+%type <intval> num
+%type <strval> str
+%type <strval> op
+%left '*' '%'
 %right '^'
 %start S
 
@@ -21,8 +22,9 @@ S   : S op        {}
     | op          {printf("%s\n",$<strval>$);}
     ;
 
-op   : STR '*' STR {char* s=concatenate($1,$3);$$=s;}
-     | STR '^' NR  {char* s=repeated_concat($1,$3);$$=s;}
+op   : str '*' str {char* s=concatenate($1,$3);$$=s;}
+     | str '^' num  {char* s=repeated_concat($1,$3);$$=s;}
+     | str '%' num  {char* s=prefix_of_length($1,$3);$$=s;}
      ;
 
 
@@ -46,6 +48,18 @@ char *repeated_concat(char* a,int n)
         a=concatenate(a,a_init);
     }
     return a;
+}
+
+char *prefix_of_length(char* a,int n)
+{
+    char *result=malloc(sizeof(char)*(n+1));
+    int i;
+    for(i=0;i<n;i++)
+    {
+        result[i]=a[i];
+    }
+    result[i]='\0';
+    return result;
 }
 
 int main(){

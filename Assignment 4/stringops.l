@@ -7,8 +7,8 @@
 %%
 
 "exit"          {exit(EXIT_SUCCESS);}
-[0-9]+          {yylval.intval=atoi(yytext); return NR;}
-[a-zA-Z]+       {yylval.strval=strdup(yytext); return STR;}
+[0-9]+          {yylval.intval=atoi(yytext); return num;}
+[a-zA-Z]+       {yylval.strval=strdup(yytext); return str;}
 [ \t\n]         ;
 .               {return yytext[0];}
 

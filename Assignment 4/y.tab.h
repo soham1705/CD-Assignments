@@ -38,13 +38,13 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     STR = 258,
-     NR = 259
+     str = 258,
+     num = 259
    };
 #endif
 /* Tokens.  */
-#define STR 258
-#define NR 259
+#define str 258
+#define num 259
 
 
 
@@ -54,7 +54,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 9 ".\\stringops.y"
+#line 10 ".\\stringops.y"
 int intval;char* strval;
 
 
