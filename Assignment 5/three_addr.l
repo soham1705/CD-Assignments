@@ -9,7 +9,7 @@
 "exit"                  {exit(EXIT_SUCCESS);}
 [0-9]+                  {printf("Number\n");}
 [a-zA-Z]                {printf("Letter\n");}
-[\*\/<>=+-]           {printf("Symbol\n");}
+[\*\/<>=+-\[\]]           {printf("Symbol\n");}
 [ \t\n]                 ;
 .                      {return yytext[0];}
 
