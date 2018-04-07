@@ -1,19 +1,20 @@
 %{
 
-  #include<stdio.h>
-  #include<string.h>
-  #include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
 void ThreeAddressCode();
-char AddToTable(char ,char, char);
+char make_entry(char ,char, char);
 
-  int ind=0;
-  char temp='A';
-  struct incod
-  {
-	char num1;
-	char num2;
-	char op;
-  };
+int i=0;
+char temp='A';
+struct three_addr
+{
+	 char num1;
+	 char num2;
+	 char op;
+};
+
 %}
 
 %union{char sym;}
@@ -25,17 +26,17 @@ char AddToTable(char ,char, char);
 
 %%
 
-statement: LETTER '=' expr  {AddToTable((char)$1,(char)$3,'=');}
+statement: LETTER '=' expr  {make_entry($1,$3,'=');}
            | expr
 	   ;
 
-expr: expr '+' expr {$$ = AddToTable((char)$1,(char)$3,'+');}
-      | expr '-' expr {$$ = AddToTable((char)$1,(char)$3,'-');}
-      | expr '*' expr {$$ = AddToTable((char)$1,(char)$3,'*');}
-      | expr '/' expr {$$ = AddToTable((char)$1,(char)$3,'/');}
-      | '(' expr ')' {$$ = (char)$2;}
+expr: expr '+' expr {$$ = make_entry($1,$3,'+');}
+      | expr '-' expr {$$ = make_entry($1,$3,'-');}
+      | expr '*' expr {$$ = make_entry($1,$3,'*');}
+      | expr '/' expr {$$ = make_entry($1,$3,'/');}
+      | '(' expr ')' {$$ = $2;}
       | NUMBER {$$ = $1;}
-      | LETTER {$$ = (char)$1;}
+      | LETTER {$$ = $1;}
       ;
 
 %%
@@ -46,57 +47,51 @@ yyerror(char *s)
   exit(0);
 }
 
-struct incod code[20];
+struct three_addr code[20];
 
-int id=0;
-
-char AddToTable(char num1,char num2,char op)
+char make_entry(char num1,char num2,char op)
 {
-code[ind].num1=num1;
-code[ind].num2=num2;
-code[ind].op=op;
-ind++;
+code[i].num1=num1;
+code[i].num2=num2;
+code[i].op=op;
+i++;
 temp++;
 return temp;
 }
 
 void ThreeAddressCode()
 {
-int cnt=0;
-temp++;
-while(cnt<ind)
-{
-	printf("%c:",temp);
+  int count=0;
+  temp++;
+  while(count<i)
+  {
+  	printf("%c:",temp);
 
+    if(isalpha(code[count].num1))
+  		printf("%c",code[count].num1);
+  	else
+  		{printf("%c",temp);}
 
-        if(isalpha(code[cnt].num1))
-		printf("%c",code[cnt].num1);
-	else
-		{printf("%c",temp);}
+  	printf("%c",code[count].op);
 
-	printf("%c",code[cnt].op);
+  	if(isalpha(code[count].num2))
+  		printf("%c",code[count].num2);
+  	else
+  		{printf("%c",temp);}
 
-	if(isalpha(code[cnt].num2))
-		printf("%c",code[cnt].num2);
-	else
-		{printf("%c",temp);}
-
-	printf("\n");
-	cnt++;
-	temp++;
+  	printf("\n");
+  	count++;
+  	temp++;
+  }
 }
-}
-
-
 
 main()
 {
- yyparse();
-ThreeAddressCode();
-
+    yyparse();
+    ThreeAddressCode();
 }
 
 yywrap()
 {
- return 1;
+    return 1;
 }
