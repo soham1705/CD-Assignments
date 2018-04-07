@@ -41,12 +41,6 @@ expr: expr '+' expr {$$ = make_entry($1,$3,'+');}
 
 %%
 
-yyerror(char *s)
-{
-  printf("%s",s);
-  exit(0);
-}
-
 struct three_addr code[20];
 
 char make_entry(char num1,char num2,char op)
@@ -94,4 +88,10 @@ main()
 yywrap()
 {
     return 1;
+}
+
+yyerror(char *s)
+{
+  printf("%s",s);
+  exit(0);
 }
