@@ -453,11 +453,11 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 ".\\three_addr_2.l"
-#line 2 ".\\three_addr_2.l"
-    #include<stdio.h>
-    #include"y.tab.h"
-    int k=1;
+#line 1 ".\\three_addr2.l"
+#line 2 ".\\three_addr2.l"
+#include<stdio.h>
+#include"y.tab.h"
+int k=1;
 #line 462 "lex.yy.c"
 
 #define INITIAL 0
@@ -645,9 +645,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 7 ".\\three_addr_2.l"
+#line 7 ".\\three_addr2.l"
 
-#line 651 "lex.yy.c"
+
+#line 652 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -732,29 +733,26 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 8 ".\\three_addr_2.l"
-{
-yylval.dval=yytext[0];
-return NUM;
-}
+#line 9 ".\\three_addr2.l"
+{yylval.dval=yytext[0];return NUM;}
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 13 ".\\three_addr_2.l"
+#line 10 ".\\three_addr2.l"
 {return 0;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 14 ".\\three_addr_2.l"
+#line 11 ".\\three_addr2.l"
 {return yytext[0];}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 15 ".\\three_addr_2.l"
+#line 13 ".\\three_addr2.l"
 ECHO;
 	YY_BREAK
-#line 758 "lex.yy.c"
+#line 756 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1752,7 +1750,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 15 ".\\three_addr_2.l"
+#line 13 ".\\three_addr2.l"
 
 
 
@@ -1760,8 +1758,11 @@ void yyerror(char* str)
 {
         printf("\n%s",str);
 }
-char *gencode(char word[],char first,char op,char second)
+
+char *gencode(char first,char op,char second)
 {
+    char word[10000];
+    word="t";
     char temp[10];
     sprintf(temp,"%d",k);
     strcat(word,temp);
@@ -1770,6 +1771,7 @@ char *gencode(char word[],char first,char op,char second)
 
     return word; //Returns variable name like t1,t2,t3... properly
 }
+
 int yywrap()
 {
     return 1;
@@ -1777,7 +1779,7 @@ int yywrap()
 
 main()
 {
-        yyparse();
-        return 0;
+    yyparse();
+    return 0;
 }
 

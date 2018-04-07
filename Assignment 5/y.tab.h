@@ -53,13 +53,11 @@ typedef union YYSTYPE
 
 /* Line 1685 of yacc.c  */
 #line 6 ".\\three_addr2.y"
-
-    char dval;
-
+char dval;
 
 
 /* Line 1685 of yacc.c  */
-#line 63 "y.tab.h"
+#line 61 "y.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

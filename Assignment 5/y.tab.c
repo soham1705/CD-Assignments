@@ -116,13 +116,11 @@ typedef union YYSTYPE
 
 /* Line 214 of yacc.c  */
 #line 6 ".\\three_addr2.y"
-
-    char dval;
-
+char dval;
 
 
 /* Line 214 of yacc.c  */
-#line 126 "y.tab.c"
+#line 124 "y.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -134,7 +132,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 138 "y.tab.c"
+#line 136 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -418,7 +416,7 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    16,    16,    19,    26,    32,    38,    44,    50,    54
+       0,    14,    14,    17,    23,    28,    33,    38,    43,    47
 };
 #endif
 
@@ -1331,17 +1329,16 @@ yyreduce:
         case 2:
 
 /* Line 1464 of yacc.c  */
-#line 16 ".\\three_addr2.y"
+#line 14 ".\\three_addr2.y"
     {printf("\nt = %c \n",(yyvsp[(1) - (1)].dval));}
     break;
 
   case 3:
 
 /* Line 1464 of yacc.c  */
-#line 20 ".\\three_addr2.y"
+#line 18 ".\\three_addr2.y"
     {
-        char word[]="t";
-        char *test=gencode(word,(yyvsp[(1) - (3)].dval),'+',(yyvsp[(3) - (3)].dval));
+        char *test=gencode((yyvsp[(1) - (3)].dval),'+',(yyvsp[(3) - (3)].dval));
         (yyval.dval)=test;
 
     }
@@ -1350,10 +1347,9 @@ yyreduce:
   case 4:
 
 /* Line 1464 of yacc.c  */
-#line 27 ".\\three_addr2.y"
+#line 24 ".\\three_addr2.y"
     {
-        char word[]="t";
-        char *test=gencode(word,(yyvsp[(1) - (3)].dval),'-',(yyvsp[(3) - (3)].dval));
+        char *test=gencode((yyvsp[(1) - (3)].dval),'-',(yyvsp[(3) - (3)].dval));
         (yyval.dval)=test;
     }
     break;
@@ -1361,10 +1357,9 @@ yyreduce:
   case 5:
 
 /* Line 1464 of yacc.c  */
-#line 33 ".\\three_addr2.y"
+#line 29 ".\\three_addr2.y"
     {
-        char word[]="t";
-        char *test=gencode(word,(yyvsp[(1) - (3)].dval),'%',(yyvsp[(3) - (3)].dval));
+        char *test=gencode((yyvsp[(1) - (3)].dval),'%',(yyvsp[(3) - (3)].dval));
         (yyval.dval)=test;
     }
     break;
@@ -1372,10 +1367,9 @@ yyreduce:
   case 6:
 
 /* Line 1464 of yacc.c  */
-#line 39 ".\\three_addr2.y"
+#line 34 ".\\three_addr2.y"
     {
-        char word[]="t";
-        char *test=gencode(word,(yyvsp[(1) - (3)].dval),'*',(yyvsp[(3) - (3)].dval));
+        char *test=gencode((yyvsp[(1) - (3)].dval),'*',(yyvsp[(3) - (3)].dval));
         (yyval.dval)=test;
     }
     break;
@@ -1383,10 +1377,9 @@ yyreduce:
   case 7:
 
 /* Line 1464 of yacc.c  */
-#line 45 ".\\three_addr2.y"
+#line 39 ".\\three_addr2.y"
     {
-        char word[]="t";
-        char *test=gencode(word,(yyvsp[(1) - (3)].dval),'/',(yyvsp[(3) - (3)].dval));
+        char *test=gencode((yyvsp[(1) - (3)].dval),'/',(yyvsp[(3) - (3)].dval));
         (yyval.dval)=test;
     }
     break;
@@ -1394,7 +1387,7 @@ yyreduce:
   case 8:
 
 /* Line 1464 of yacc.c  */
-#line 51 ".\\three_addr2.y"
+#line 44 ".\\three_addr2.y"
     {
         (yyval.dval)=(yyvsp[(2) - (3)].dval);
     }
@@ -1403,7 +1396,7 @@ yyreduce:
   case 9:
 
 /* Line 1464 of yacc.c  */
-#line 55 ".\\three_addr2.y"
+#line 48 ".\\three_addr2.y"
     {
         (yyval.dval)=(yyvsp[(1) - (1)].dval);
     }
@@ -1412,7 +1405,7 @@ yyreduce:
 
 
 /* Line 1464 of yacc.c  */
-#line 1416 "y.tab.c"
+#line 1409 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1624,6 +1617,6 @@ yyreturn:
 
 
 /* Line 1684 of yacc.c  */
-#line 59 ".\\three_addr2.y"
+#line 52 ".\\three_addr2.y"
 
 

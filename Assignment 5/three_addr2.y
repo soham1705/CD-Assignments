@@ -3,9 +3,7 @@
 int aaa;
 %}
 
-%union{
-    char dval;
-}
+%union{char dval;}
 
 %token <dval> NUM
 %type <dval> E
@@ -18,33 +16,28 @@ statement : E {printf("\nt = %c \n",$1);}
 
 E : E '+' E
     {
-        char word[]="t";
-        char *test=gencode(word,$1,'+',$3);
+        char *test=gencode($1,'+',$3);
         $$=test;
 
     }
   | E '-' E
     {
-        char word[]="t";
-        char *test=gencode(word,$1,'-',$3);
+        char *test=gencode($1,'-',$3);
         $$=test;
     }
   | E '%' E
     {
-        char word[]="t";
-        char *test=gencode(word,$1,'%',$3);
+        char *test=gencode($1,'%',$3);
         $$=test;
     }
   | E '*' E
     {
-        char word[]="t";
-        char *test=gencode(word,$1,'*',$3);
+        char *test=gencode($1,'*',$3);
         $$=test;
     }
   | E '/' E
     {
-        char word[]="t";
-        char *test=gencode(word,$1,'/',$3);
+        char *test=gencode($1,'/',$3);
         $$=test;
     }
   | '(' E ')'

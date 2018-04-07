@@ -10,6 +10,8 @@ void yyerror(char *s);
 %type <intval> num
 %type <strval> str
 
+%token sym
+
 %start S
 
 %%
