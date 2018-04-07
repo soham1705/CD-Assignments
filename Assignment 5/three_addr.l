@@ -7,11 +7,11 @@
 %%
 
 "exit"                  {exit(EXIT_SUCCESS);}
-[0-9]+                  {printf("Number\n");}
-[a-zA-Z]                {printf("Letter\n");}
-[\*\/<>=+-\[\]]           {printf("Symbol\n");}
+[0-9]+                  {yylval.intval=atoi(yytext); return num;}
+[a-zA-Z]                {yylval.strval=strdup(yytext); return str;}
+[\*\/<>=+-\[\]]         {yylval.strval=strdup(yytext); return sym;}
 [ \t\n]                 ;
-.                      {return yytext[0];}
+.                       {return yytext[0];}
 
 %%
 
