@@ -17,10 +17,8 @@ void yyerror(char* str)
         printf("\n%s",str);
 }
 
-char *gencode(char first,char op,char second)
+char *gencode(char word[],char first,char op,char second)
 {
-    char word[10000];
-    word="t";
     char temp[10];
     sprintf(temp,"%d",k);
     strcat(word,temp);
