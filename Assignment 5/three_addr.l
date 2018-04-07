@@ -1,21 +1,16 @@
 %{
-#include <stdio.h>
-#include <stdlib.h>
-//#include "y.tab.h"
+   #include "y.tab.h"
+   extern char yyval;
 %}
 
-%%
-
-"exit"                  {exit(EXIT_SUCCESS);}
-[0-9]+                  {yylval.intval=atoi(yytext); return num;}
-[a-zA-Z]                {yylval.strval=strdup(yytext); return str;}
-[\*\/<>=+-\[\]]         {yylval.strval=strdup(yytext); return sym;}
-[ \t\n]                 ;
-.                       {return yytext[0];}
+NUMBER [0-9]+
+LETTER [a-zA-Z]+
 
 %%
+{NUMBER} {yylval.sym=(char)yytext[0]; return NUMBER;}
+{LETTER} {yylval.sym=(char)yytext[0];return LETTER;}
 
-int yywrap()
-{
-    return 1;
-}
+\n {return 0;}
+.  {return yytext[0];}
+
+%%

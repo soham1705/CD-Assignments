@@ -38,11 +38,13 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     NUM = 258
+     LETTER = 258,
+     NUMBER = 259
    };
 #endif
 /* Tokens.  */
-#define NUM 258
+#define LETTER 258
+#define NUMBER 259
 
 
 
@@ -52,12 +54,12 @@ typedef union YYSTYPE
 {
 
 /* Line 1685 of yacc.c  */
-#line 6 ".\\three_addr2.y"
-char dval;
+#line 19 ".\\th.y"
+char sym;
 
 
 /* Line 1685 of yacc.c  */
-#line 61 "y.tab.h"
+#line 63 "y.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
